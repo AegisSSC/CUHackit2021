@@ -37,6 +37,7 @@ class spotify_featured_playlists():
             #Analyzes information and creates a method for creating a data unit for it. 
             self.aggregated_information = Analyzer.analyze_playlist(song_Data_List, playlist['tracks']['total'])
             self.Database_Information = {playlist['name'] : aggregated_information}
+            print(self.Database_Information[playlist['name']])
 
     def print_playlist_information(self,playlist_library):
         for playlist in playlist_library['items']:
