@@ -1,6 +1,6 @@
 import spotipy
 from spotipy.oauth2 import *
-from SpotAnal import *
+from PlaylistAnalyzer import *
 
 class user_playlist():
     def __init__(self):
@@ -13,11 +13,11 @@ class user_playlist():
         self.spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
         self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth())
         self.username = 'kinghaloiii'
-        self.playlist_library = sp.user_playlists(username)
+        self.playlist_library = self.sp.user_playlists(self.username)
         #artists= sp.current_user_top_artists(username)
         self.Analyzer()
 
-    def run(self):
+    def main_component(self):
         self.print_playlist_information(playlist_library)
         #for every playlist that exists within the users library
         for playlist in playlist_library['items']:

@@ -1,7 +1,8 @@
-from AlgorithmPy import *
-from getplaylists import *
+from getuserplaylists import *
+from getspotifyplaylists import *
 
-spotify_featured_playlists()
-spotify_featured_playlists.run()
-# user_playlist()
-# user_playlist.run()
+
+s = spotify_featured_playlists()
+s.main_component()
+#u = user_playlist()
+# u.main_component()
