@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <style type="text./css">
+    #login {
+      display: none;
+    }
+    
+    #loggedin {
+      display: none;
+    }
+  </style>
+  <script>
+    // GET is the default method, so we don't need to set it
+    fetch('/hello')
+        .then(function (response) {
+            return response.text();
+        }).then(function (text) {
+            console.log('GET response text:');
+            console.log(text); // Print the greeting as text
+        });
+
+    // Send the same request
+    fetch('/hello')
+        .then(function (response) {
+            return response.json(); // But parse it as JSON this time
+        })
+        .then(function (json) {
+            console.log('GET response as JSON:');
+            console.log(json); // Here’s our JSON object
+        })
+
+    // POST
+    fetch('/hello', {
+
+    // Declare what type of data we're sending
+    headers: {
+      'Content-Type': 'application/json'
+    },
+
+    // Specify the method
+    method: 'POST',
+
+    // A JSON payload
+    body: JSON.stringify({
+        "greeting": "Hello from the browser!"
+    })
+    }).then(function (response) { // At this point, Flask has printed our JSON
+    return response.text();
+    }).then(function (text) {
+
+    console.log('POST response: ');
+
+    // Should be 'OK' if everything was successful
+    console.log(text);
+    });
+  </script>
+  <body>
+    <body>
+      <noscript>You need to enable JavaScript to run this app.</noscript>
+      <div id="root"></div>
+      <div id="loader" class="hide"></div>
+      <!--
+        This HTML file is a template.
+        If you open it directly in the browser, you will see an empty page.
+        You can add webfonts, meta tags, or analytics to this file.
+        The build step will place the bundled scripts into the <body> tag.
+        To begin the development, run `npm start` or `yarn start`.
+        To create a production bundle, use `npm run build` or `yarn build`.
+      -->
+    </body>
+  </body>
+</html>
