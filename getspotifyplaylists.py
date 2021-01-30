@@ -4,22 +4,10 @@ from SpotAnal import *
 
 
 ### STUFF I ADDED TO PULL OTHER STUFF ### 
-username = 'spotify'
-playlists = sp.user_playlists(username) 
-playlists2 = sp.user_playlists(username,offset=50)
-#artists= sp.current_user_top_artists(username)
-i = 0
-for playlist,p2 in zip(playlists['items'],playlists2['items']):
-    print(playlist['name'])
-    print(p2['name'])
-    i+=2
-print(i)
-
-
 
 ### GETTING SPOTIFY USER FEAUTRED PLAYLIST AND DOING STUFF TO EM #### 
 
-class spotify_featured_playlists(self):
+class spotify_featured_playlists():
     def __init__(self):
         # export SPOTIPY_CLIENT_ID = '3d2e1d32b52f4d4a9f6496c70ff46446'
         # export SPOTIPY_CLIENT_SECRET = '08c836bdd7174ef2961b67637f5f7d24'
