@@ -14,33 +14,15 @@ playlists = sp.user_playlists(username)
 
 for playlist in playlists['items']:
     print(playlist['name'])
+    print(playlist['tracks']['total'])
+    #A list of infomarion about every single track in a playlist 
     Tracks = sp.playlist_tracks(playlist['id'])
+    #Track is an individual song information in the playlist 
     for Track in Tracks['items']: 
-        print(Track['track']['name'])
+        #Name of the song 
+        TrackID = Track['track']['id']
+        print(Track['track']['name'] + ': ')
+        #All audio feautres 
+        print(sp.audio_features(TrackID) )
+        print('\n')
     print('\n\n')
-
-
-
-
-#while playlists:
-#    for i, playlist in enumerate(playlists['items']):
-#        print(
-#            "%4d %s %s" %
-#            (i +
-#             1 +
-#             playlists['offset'],
-#             playlist['uri'],
-#             playlist['name']))
-#    if playlists['next']:
-#        playlists = sp.next(playlists)
-#    else:
-#        playlists = None
-
-# results = spotify.artist_albums(birdy_uri, album_type='album')
-# albums = results['items']
-# while results['next']:
-#     results = spotify.next(results)
-#     albums.extend(results['items'])
-
-# for album in albums:
-#     print(album['name'])
