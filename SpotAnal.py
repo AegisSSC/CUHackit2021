@@ -36,17 +36,14 @@ class Analyzer():
         mean = totalsum / length 
         std = self.calculate_std_dev(List)
         for i in List:
-            if(i < (mean - (std*var):
+            if i < (mean - (std*var)):
                 sbset.append(i)
             elif(i > (mean - (std * var))):
                 superset.append(i)
-
         if(len(subset) >= min_cluster_size):
             sub_mean = self.calculate_mean(subset, len(subset))
-                
         if(len(superset) >= min_cluster_size):
             super_mean = self.calculate_mean(superset, len(superset))
-        
         return mean, sub_mean, super_mean
 
     def calculate_std_dev(List): 
@@ -91,3 +88,4 @@ class Analyzer():
         for song in playlist:
             energy_list = song[energy]
         return self.calculate_mean(energy_list, length)
+
