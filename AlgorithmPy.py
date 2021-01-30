@@ -14,8 +14,6 @@ playlists = sp.user_playlists(username)
 for playlist in playlists['items']:
     print(playlist['name'])
 
-
-
 while playlists:
     for i, playlist in enumerate(playlists['items']):
         print(
