@@ -31,9 +31,7 @@ class Analyzer():
     def calculate_mean(List, length):
         var = 2
         min_cluster_size = 5
-        for i in List:
-            totalsum += i
-        mean = totalsum / length 
+        mean = statistics.mean(List)
         std = self.calculate_std_dev(List)
         for i in List:
             if i < (mean - (std*var)):
@@ -51,41 +49,41 @@ class Analyzer():
     
     def calculate_median_danceability(playlist):
         for song in playlist:
-            danceability_list = song[danceability]
+            danceability_list = song["danceability"]
         return self.calculate_median(danceability_list)
 
     def calculate_median_tempo(playlist):
         for song in playlist:
-            tempo_list = song[tempo]
+            tempo_list = song["tempo"]
         return self.calculate_median(tempo_list)
         
     def calculate_mode_key(playlist):
         for song in playlist:
-            key_list = song[key]
+            key_list = song["key"]
         return self.calculate_mode(key_list)
         
     def calculate_mode_mode(playlist):
         for song in playlist:
-            mode_list = song[mode]
+            mode_list = song["mode"]
         return self.calculate_mode(mode_list)
         
     def calculate_mean_acousticness(playlist,length):
         for song in playlist:
-            acousticness_list = song[acousticness]
+            acousticness_list = song["acousticness"]
         return self.calculate_mode(acoutsticness_list)
 
     def calculate_mean_speechiness(playlist,length):
         for song in playlist:
-            speechiness_list = song[speechiness]
+            speechiness_list = song["speechiness"]
         return self.calculate_mean(speechiness_list, length)
         
     def calculate_mean_valence(playlist,length):
         for song in playlist:
-            valence_list = song[valence]
+            valence_list = song["valence"]
         return self.calculate_mean(valence_list, length)
 
     def calculate_mean_energy(playlist,length):
         for song in playlist:
-            energy_list = song[energy]
+            energy_list = song["energy"]
         return self.calculate_mean(energy_list, length)
 
