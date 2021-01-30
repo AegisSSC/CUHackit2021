@@ -8,21 +8,32 @@ from spotipy.oauth2 import *
 spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth())
 
-username = 'kinghaloiii'
-playlists = sp.user_playlists(username)
+username = 'spotify'
+playlists = sp.user_playlists(username) 
+playlists2 = sp.user_playlists(username,offset=50)
 #artists= sp.current_user_top_artists(username)
-
-for playlist in playlists['items']:
+i = 0
+for playlist,p2 in zip(playlists['items'],playlists2['items']):
     print(playlist['name'])
-    print(playlist['tracks']['total'])
+    print(p2['name'])
+    i+=2
+print(i)
+    #print(playlist['tracks']['total'])
     #A list of infomarion about every single track in a playlist 
-    Tracks = sp.playlist_tracks(playlist['id'])
-    #Track is an individual song information in the playlist 
-    for Track in Tracks['items']: 
-        #Name of the song 
-        TrackID = Track['track']['id']
-        print(Track['track']['name'] + ': ')
-        #All audio feautres 
-        print(sp.audio_features(TrackID) )
-        print('\n')
-    print('\n\n')
+    # Tracks = sp.playlist_tracks(playlist['id'])
+    # #Track is an individual song information in the playlist 
+    # for Track in Tracks['items']: 
+    #     #Name of the song 
+    #     TrackID = Track['track']['id']
+    #     print(Track['track']['name'] + ': ')
+    #     #All audio feautres 
+    #     print(sp.audio_features(TrackID) )
+    #     print('\n')
+    # print('\n\n')
+
+
+### GETTING SPOTIFY USER FEAUTRED PLAYLIST AND DOING STUFF TO EM #### 
+# SpotifyPL = sp.featured_playlists(limit = 30)
+# for ting in SpotifyPL['playlists']['items']:
+#     print(ting['name'])
+
