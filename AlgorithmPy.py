@@ -8,27 +8,33 @@ from spotipy.oauth2 import *
 spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth())
 
-username = 'aegis_sc'
+username = 'kinghaloiii'
 playlists = sp.user_playlists(username)
+#artists= sp.current_user_top_artists(username)
 
 for playlist in playlists['items']:
     print(playlist['name'])
+    Tracks = sp.playlist_tracks(playlist['id'])
+    for Track in Tracks['items']: 
+        print(Track['track']['name'])
+    print('\n\n')
 
 
 
-while playlists:
-    for i, playlist in enumerate(playlists['items']):
-        print(
-            "%4d %s %s" %
-            (i +
-             1 +
-             playlists['offset'],
-             playlist['uri'],
-             playlist['name']))
-    if playlists['next']:
-        playlists = sp.next(playlists)
-    else:
-        playlists = None
+
+#while playlists:
+#    for i, playlist in enumerate(playlists['items']):
+#        print(
+#            "%4d %s %s" %
+#            (i +
+#             1 +
+#             playlists['offset'],
+#             playlist['uri'],
+#             playlist['name']))
+#    if playlists['next']:
+#        playlists = sp.next(playlists)
+#    else:
+#        playlists = None
 
 # results = spotify.artist_albums(birdy_uri, album_type='album')
 # albums = results['items']
