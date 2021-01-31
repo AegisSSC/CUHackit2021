@@ -26,8 +26,11 @@ class spotify_featured_playlists():
         self. Analyzer = Analyzer()
 
     def main_component(self):
-        self.print_playlist_information(self.playlist_library)
+        ###Supressed Print Playlist information for my own sanity part 1 ### 
+
+        #self.print_playlist_information(self.playlist_library)
         #for every playlist that exists within the users library
+        i=0
         for playlist in self.playlist_library['items']:
             track_list = self.sp.playlist_tracks(playlist['id'])
             #Track is an individual song information in the playlist 
@@ -36,11 +39,16 @@ class spotify_featured_playlists():
                 songID = track['track']['id']
                 #gathers information and creates a List of Dictionaries to analyze
                 self.song_Data_List.append(self.sp.audio_features(songID))
+                print("Appended to the list :)" + str(i))
+                i+=1
             #Analyzes information and creates a method for creating a data unit for it. 
             self.aggregated_information = self.Analyzer.analyze_playlist(self.song_Data_List, playlist['tracks']['total'])
             self.Database_Information = {playlist['name'] : self.aggregated_information}
-            print("Playlist Name: "+ playlist['name'] + " Playlist data: ")
-            print(self.Database_Information[playlist['name']])
+            self.Write_to_file(self.Database_Information,'output.txt')
+            self.song_Data_List.clear()
+            ### Suppressing these Prints for my Sanity ###  
+            #print("Playlist Name: "+ playlist['name'] + " Playlist data: ")
+            #print(self.Database_Information[playlist['name']])
 
     def print_playlist_information(self,playlist_library):
         for playlist in self.playlist_library['items']:
@@ -60,7 +68,10 @@ class spotify_featured_playlists():
                 print('\n')
             print('\n\n')
     def Write_to_file(self,Database_Information,output):
-        f = open(output,"a")
+        try:
+            f = open(output,'a')
+        except:
+            f = open(output,'x')
         for item in Database_Information.items():
             f.write(str(item) + '\n')
         f.close()
