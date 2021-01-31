@@ -11,14 +11,14 @@ def Read_from_File(output):
     except:
         print("File does not exist exiting")
         exit()
-    # Date Time will hold the Date and the time and File_dict will be filled with the tings
+    # Date Time will hold the Date and the time and File_dict will be filled with the sound variables provided by Spotify 
     Date_time = f.readline() 
     File_dict = {} 
+    #This Loop removes all the non Alphanumeric symbols from the words of the text file so they can be used 
     for line in f: 
         numbers = []
         title = ""
         split = line.split(",",1)
-        # File_dict[split[0]] = split[1]
         title = ''.join(c for c in split[0] if c.isalnum())
         for word in split[1].split(): 
             if '[' in word:
@@ -28,17 +28,14 @@ def Read_from_File(output):
                 word = ''.join([c for c in word if c in '1234567890.'])
                 numbers.append(word)
         File_dict[title] = numbers
-    #Perform the conversion: If has brackets. Remove and make int. if not make float. 
 
     f.close()
     return File_dict
 
-# Add the current date and time as line 1 to the top of date. 
-# Write would function in the same way WAHOOOOO 
 
 #This function will take in a dicitonary that conatined the audio data from a playlist 
-#It will then write try to open the output file for writing. If it does not it exist it will create it 
-# It will then write the current date and time of the call 
+#It will then try to open the output file for writing. If it does not it exist it will create it 
+# It will then write the current date and time to the file 
 # It then writes the information to the file. 
 def Write_to_file(Database_Information,output):
         try:
