@@ -72,14 +72,21 @@ class spotify_featured_playlists():
             f.write(str(item) + '\n')
         f.close()
 
-            # #A list of infomarion about every single track in a playlist 
-            # track_list = self.sp.playlist_tracks(playlist['id'])
-            # #Track is an individual song information in the playlist 
-            # for track in track_list['items']: 
-            #     #Name of the song 
-            #     songID = track['track']['id']
-            #     print(track['track']['name'] + ':')
-            #     #All audio feautres printed out
-            #     print(self.sp.audio_features(songID) )
-            #     print('\n')
-            # print('\n\n')
+            
+    # def Write_to_file(self,Database_Information,output):
+    #     f = open(output,"a")
+    #     for item in Database_Information.items():
+    #         f.write(str(item) + '\n')
+    #     f.close()
+
+    #         # #A list of infomarion about every single track in a playlist 
+    #         # track_list = self.sp.playlist_tracks(playlist['id'])
+    #         # #Track is an individual song information in the playlist 
+    #         # for track in track_list['items']: 
+    #         #     #Name of the song 
+    #         #     songID = track['track']['id']
+    #         #     print(track['track']['name'] + ':')
+    #         #     #All audio feautres printed out
+    #         #     print(self.sp.audio_features(songID) )
+    #         #     print('\n')
+    #         # print('\n\n')
