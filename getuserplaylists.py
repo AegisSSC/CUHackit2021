@@ -3,7 +3,7 @@ from spotipy.oauth2 import *
 from PlaylistAnalyzer import *
 
 class user_playlist:
-    def __init__(self, un = "aegis_sc"):
+    def __init__(self, un = 'aegis_sc'):
         # export SPOTIPY_CLIENT_ID = '3d2e1d32b52f4d4a9f6496c70ff46446'
         # export SPOTIPY_CLIENT_SECRET = '08c836bdd7174ef2961b67637f5f7d24'
         #SpotifyClientCredentials("3d2e1d32b52f4d4a9f6496c70ff46446","08c836bdd7174ef2961b67637f5f7d24")
