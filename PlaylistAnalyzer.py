@@ -34,8 +34,7 @@ class Analyzer():
     #Preconditions:     sorted_list is a list of numbers that should be sorted
     #Postconditions:    Returns a 5 decimal floating type to the user as the mode
     def calculate_mode(self, sorted_list):
-        c = Counter(sorted_list)
-        return [k for k, v in c.items() if v == c.most_common(1)[0][1]]
+        return statistics.mode(sorted_list)
 
     #Function:          calculate_mean
     #Description:       Calculates the mean of a given data set
