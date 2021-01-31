@@ -1,28 +1,31 @@
 import React, { useState } from 'react';
 
 import {
-  initiateGetResult,
-  initiateLoadMoreAlbums,
-  initiateLoadMorePlaylist,
-  initiateLoadMoreArtists
+  initiateGetResult
+  // initiateGetResult,
+  // initiateLoadMoreAlbums,
+  // initiateLoadMorePlaylist
+  // initiateLoadMorePlaylist,
+  // initiateLoadMoreArtists
 } from '../actions/result';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import SearchResult from './SearchResult';
 import SearchForm from './SearchForm';
 import Header from './Header';
-import Loader from './Loader';
+// import Loader from './Loader';
 
 const Dashboard = (props) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('albums');
+  // const [isLoading, setIsLoading] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('playlists');
   const { isValidSession, history } = props;
 
   const handleSearch = (searchTerm) => {
     if (isValidSession()) {
-      setIsLoading(true);
+      // setIsLoading(true);
+      console.log("the searchTerm in handle search in dashboard is" + searchTerm);
       props.dispatch(initiateGetResult(searchTerm)).then(() => {
-        setIsLoading(false);
+        // setIsLoading(false);
         setSelectedCategory('albums');
       });
     } else {
@@ -35,39 +38,43 @@ const Dashboard = (props) => {
     }
   };
 
-  const loadMore = async (type) => {
-    if (isValidSession()) {
-      const { dispatch, albums, artists, playlist } = props;
-      setIsLoading(true);
-      switch (type) {
-        case 'albums':
-          await dispatch(initiateLoadMoreAlbums(albums.next));
-          break;
-        case 'artists':
-          await dispatch(initiateLoadMoreArtists(artists.next));
-          break;
-        case 'playlist':
-          await dispatch(initiateLoadMorePlaylist(playlist.next));
-          break;
-        default:
-      }
-      setIsLoading(false);
-    } else {
-      history.push({
-        pathname: '/',
-        state: {
-          session_expired: true
-        }
-      });
-    }
-  };
+  // const loadMore = async (type) => {
+  //   if (isValidSession()) {
+  //     // const { dispatch, albums, artists, playlist } = props;
+  //     const { dispatch, albums, playlist } = props;
+  //     setIsLoading(true);
+  //     switch (type) {
+  //       case 'albums':
+  //         await dispatch(initiateLoadMoreAlbums(albums.next));
+  //         break;
+  //       // case 'artists':
+  //       //   await dispatch(initiateLoadMoreArtists(artists.next));
+  //       //   break;
+  //       case 'playlist':
+  //         await dispatch(initiateLoadMorePlaylist(playlist.next));
+  //         break;
+  //       default:
+  //     }
+  //     setIsLoading(false);
+  //   } else {
+  //     history.push({
+  //       pathname: '/',
+  //       state: {
+  //         session_expired: true
+  //       }
+  //     });
+  //   }
+  // };
 
   const setCategory = (category) => {
     setSelectedCategory(category);
   };
 
-  const { albums, artists, playlist } = props;
-  const result = { albums, artists, playlist };
+  // const { albums, artists, playlist } = props;
+  // const result = { albums, artists, playlist };
+
+  const { albums, playlist } = props;
+  const result = { albums, playlist };
 
   return (
     <React.Fragment>
@@ -75,10 +82,10 @@ const Dashboard = (props) => {
         <div>
           <Header />
           <SearchForm handleSearch={handleSearch} />
-          <Loader show={isLoading}>Loading...</Loader>
+          
           <SearchResult
             result={result}
-            loadMore={loadMore}
+            // loadMore={loadMore}
             setCategory={setCategory}
             selectedCategory={selectedCategory}
             isValidSession={isValidSession}
@@ -101,8 +108,9 @@ const Dashboard = (props) => {
 const mapStateToProps = (state) => {
   return {
     albums: state.albums,
-    artists: state.artists,
     playlist: state.playlist
+    // artists: state.artists,
+    // playlist: state.playlist
   };
 };
 

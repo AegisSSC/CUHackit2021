@@ -2,6 +2,16 @@ from getuserplaylists import *
 from getspotifyplaylists import *
 from FileHandler import * 
 from usercomparetospotify import *
+from flask import Flask, jsonify, request, render_template
+
+app = Flask(__name__)
+
+@app.route('/posts', methods=['GET', 'POST'])
+def posts():
+    if request.method == 'POST':
+        print(request.get_json())  # parse as JSON
+        user_token = request.get_json()
+        return 'OK', 200
 
 
 #s = spotify_featured_playlists()

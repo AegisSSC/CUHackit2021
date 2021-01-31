@@ -32,8 +32,10 @@ body {
 }
 
 .main {
-  width: 90%;
-  margin: 2rem auto;
+  width: 100%;
+  margin: auto auto;
+  height: 6em;
+  background-color: #1DB954;
 }
 
 .form-control {
@@ -41,19 +43,19 @@ body {
 }
 
 .main-heading {
-  color: black;
+  color: white;
   position: relative;
   text-align: center;
-  background-color: #f3f4f6;
+  font:"American-Typewriter";
+  font-weight: bold;
+  vertical-align: center;
   font-size: 3em;
+  margin: none;
+  width: 100%;
 }
 
 .hide {
   display: none;
-}
-
-.active {
-  /* border: 2px solid #566273; */
 }
 
 .loading {

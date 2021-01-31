@@ -16,6 +16,15 @@ export default class RedirectPage extends React.Component {
       localStorage.setItem('expiry_time', expiryTime);
       setExpiryTime(expiryTime);
       history.push('/dashboard');
+
+      const requestOptions = {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(access_token)
+      };
+      fetch('/posts', requestOptions)
+        .then(response => response.json())
+        .then(data => this.setState({postID: data.id}));
     } catch (error) {
       history.push('/');
     }
