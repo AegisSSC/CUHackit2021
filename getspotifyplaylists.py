@@ -40,6 +40,7 @@ class spotify_featured_playlists():
             self.Database_Information = {playlist['name'] : self.aggregated_information}
             print("Playlist Name: "+ playlist['name'] + " Playlist data: ")
             print(self.Database_Information[playlist['name']])
+        # self.Write_to_file(self.Database_Information,"output.txt")
 
     def print_playlist_information(self,playlist_library):
         for playlist in self.playlist_library['items']:
@@ -58,6 +59,8 @@ class spotify_featured_playlists():
                 print(self.sp.audio_features(songID) )
                 print('\n')
             print('\n\n')
+
+            
     def Write_to_file(self,Database_Information,output):
         f = open(output,"a")
         for item in Database_Information.items():

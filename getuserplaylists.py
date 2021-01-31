@@ -24,6 +24,7 @@ class user_playlist():
             track_list = self.sp.playlist_tracks(playlist['id'])
             #Track is an individual song information in the playlist 
             for track in track_list['items']: 
+                self.song_Data_List = []
                 #Get the ID of the song 
                 songID = track['track']['id']
                 #gathers information and creates a List of Dictionaries to analyze
