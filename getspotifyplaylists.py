@@ -58,3 +58,9 @@ class spotify_featured_playlists():
                 print(self.sp.audio_features(songID) )
                 print('\n')
             print('\n\n')
+    def Write_to_file(self,Database_Information,output):
+        f = open(output,"a")
+        for item in Database_Information.items():
+            f.write(str(item) + '\n')
+        f.close()
+
