@@ -146,16 +146,24 @@ class Analyzer():
 
     def generate_user_scores(self, user_playlist_data):
         playlist_value = []
+        danceability = []
+        tempo = []
+        key = []
+        mode = []
+        acousticness = []
+        speechiness = []
+        valence = []
+        energy = []
         i = 0
         for playlist in user_playlist_data:
-            danceability[i] = user_playlist_data[playlist][0]
-            tempo[i] = user_playlist_data[playlist][1]
-            key[i] = user_playlist_data[playlist][2]
-            mode[i] = user_playlist_data[playlist][3]
-            acousticness[i] = user_playlist_data[playlist][4]
-            speechiness[i] = user_playlist_data[playlist][5]
-            valence[i] = user_playlist_data[playlist][6]
-            energy[i] = user_playlist_data[playlist][7]
+            danceability.append(user_playlist_data[playlist][0])
+            tempo.append(user_playlist_data[playlist][1])
+            key.append(user_playlist_data[playlist][2])
+            mode.append(user_playlist_data[playlist][3])
+            acousticness.append(user_playlist_data[playlist][4])
+            speechiness.append(user_playlist_data[playlist][5])
+            valence.append(user_playlist_data[playlist][6])
+            energy.append(user_playlist_data[playlist][7])
             i+=1
         user_danceability = self.calculate_median(danceability)
         user_tempo = self.calculate_median(tempo)

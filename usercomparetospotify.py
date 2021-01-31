@@ -4,7 +4,7 @@ import math
 class UserComparisonTool():
     def __init__(self):
         self.Analyzer = Analyzer()
-        compared_playlists() = []
+        compared_playlists = []
     #Function that Calculate Root Mean Square  
     def rmsValue(self, arr, n): 
         square = 0
