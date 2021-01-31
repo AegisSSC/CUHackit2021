@@ -144,11 +144,18 @@ class Analyzer():
         ag_energy = self.calculate_mean_energy(playlist,length)
         return [ag_danceability, ag_tempo, ag_key, ag_mode, ag_acousticness, ag_speechiness, ag_valence, ag_energy]
 
-    def generate_user_scores(self, user_playlist_library):
+    def generate_user_scores(self, user_playlist_data):
         playlist_value = []
         i = 0
-        for playlist in user_playlist_library:
-            danceability[i], tempo[i], key[i], mode[i], acousticness[i], speechiness[i], valence[i], energy[i] = self.analyze_playlist(playlist, len(playlist))
+        for playlist in user_playlist_data:
+            danceability[i] = user_playlist_data[playlist][0]
+            tempo[i] = user_playlist_data[playlist][1]
+            key[i] = user_playlist_data[playlist][2]
+            mode[i] = user_playlist_data[playlist][3]
+            acousticness[i] = user_playlist_data[playlist][4]
+            speechiness[i] = user_playlist_data[playlist][5]
+            valence[i] = user_playlist_data[playlist][6]
+            energy[i] = user_playlist_data[playlist][7]
             i+=1
         user_danceability = self.calculate_median(danceability)
         user_tempo = self.calculate_median(tempo)

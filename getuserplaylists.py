@@ -30,9 +30,11 @@ class user_playlist():
                 self.song_Data_List.append(self.sp.audio_features(songID))
             #Analyzes information and creates a method for creating a data unit for it. 
             self.aggregated_information = self.Analyzer.analyze_playlist(self.song_Data_List, playlist['tracks']['total'])
-            self.Database_Information = {playlist['name'] : self.aggregated_information}
+            self.Database_Information{playlist['name']} =  self.aggregated_information
             print("Playlist Name: "+ playlist['name'] + " Playlist data: ")
-            print(self.Database_Information[playlist['name']])
+        print(self.Database_Information[playlist['name']])
+        return
+            
 
     def print_playlist_information(self,playlist_library):
         for playlist in playlist_library['items']:

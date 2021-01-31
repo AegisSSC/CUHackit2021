@@ -49,7 +49,7 @@ class UserComparisonTool():
         aggregated_user_scores = self.Analyzer.generate_user_scores(user_playlist_library)
         #compare the value to the playlist in the spotify library
         for playlist in spotify_playlist_library:
-            playlist_rms = self.compare_playlists(aggregated_user_scores, playlist)
-            compared_playlists.append((playlist['name'], playlist_rms))
+            playlist_rms = self.compare_playlists(aggregated_user_scores, spotify_playlist_library[playlist])
+            compared_playlists.append((playlist, playlist_rms))
         self.Sort_Tuple(compared_playlists)
         return compared_playlists[0]
