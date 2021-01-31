@@ -46,7 +46,7 @@ class UserComparisonTool():
 
     def usercomparison(self, user_playlist_library, spotify_playlist_library):
         #average all of the users playlists together to a single set of scores
-        aggregated_user_scores = self.Analyzer.analyze_playlist(user_playlist_library, len(user_playlist_library))
+        aggregated_user_scores = self.Analyzer.generate_user_scores(user_playlist_library)
         #compare the value to the playlist in the spotify library
         for playlist in spotify_playlist_library:
             playlist_rms = self.compare_playlists(aggregated_user_scores, playlist)
