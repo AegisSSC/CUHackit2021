@@ -15,8 +15,20 @@ def Read_from_File(output):
     Date_time = f.readline() 
     File_dict = {} 
     for line in f: 
+        numbers = []
+        title = ""
         split = line.split(",",1)
-        File_dict[split[0]] = split[1]
+        # File_dict[split[0]] = split[1]
+        title =split[0]
+        for word in split: 
+            if '[' in word:
+                word = ''.join([c for c in word if c in '1234567890.'])
+                numbers.append(word)
+            else:
+                word = ''.join([c for c in word if c in '1234567890.'])
+                numbers.append(word)
+        File_dict[title] = numbers
+    #Perform the conversion: If has brackets. Remove and make int. if not make float. 
 
     f.close()
     return File_dict
