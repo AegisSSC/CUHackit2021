@@ -19,8 +19,8 @@ def Read_from_File(output):
         title = ""
         split = line.split(",",1)
         # File_dict[split[0]] = split[1]
-        title =split[0]
-        for word in split: 
+        title = ''.join(c for c in split[0] if c.isalnum())
+        for word in split[1].split(): 
             if '[' in word:
                 word = ''.join([c for c in word if c in '1234567890.'])
                 numbers.append(word)
