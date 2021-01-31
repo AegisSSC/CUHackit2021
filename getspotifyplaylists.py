@@ -16,7 +16,7 @@ class spotify_featured_playlists():
         self.spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
         self.sp = spotipy.Spotify(auth_manager=SpotifyOAuth())
         self.username = 'spotify'
-        playlists = self.sp.user_playlists(self.username)
+        playlists = self.sp.user_playlists(self.username ,offset=37)
         # playlists2 =  self.sp.user_playlists(self.username,offset=50)
         # playlists.update(playlists2)
         self.playlist_library = playlists
