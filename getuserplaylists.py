@@ -40,14 +40,3 @@ class user_playlist():
             print(playlist['name'])
             #print the total number of tracks in that playlist
             print(playlist['tracks']['total'])
-            # #A list of infomarion about every single track in a playlist 
-            # track_list = self.sp.playlist_tracks(playlist['id'])
-            # #Track is an individual song information in the playlist 
-            # for track in track_list['items']: 
-            #     #Name of the song 
-            #     songID = track['track']['id']
-            #     print(track['track']['name'] + ':')
-            #     #All audio feautres printed out
-            #     print(self.sp.audio_features(songID) )
-            #     print('\n')
-            # print('\n\n')

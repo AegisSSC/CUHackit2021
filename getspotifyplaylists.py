@@ -1,7 +1,7 @@
 import spotipy
 from spotipy.oauth2 import *
 from PlaylistAnalyzer import *
-
+from FileHandler import *
 
 ### STUFF I ADDED TO PULL OTHER STUFF ### 
 
@@ -41,10 +41,11 @@ class spotify_featured_playlists():
             #Analyzes information and creates a method for creating a data unit for it. 
             self.aggregated_information = self.Analyzer.analyze_playlist(song_Data_List, playlist['tracks']['total'])
             self.Database_Information = {playlist['name'] : self.aggregated_information}
-            self.Write_to_file(self.Database_Information,'output.txt')
+            #self.Write_to_file(self.Database_Information,'output.txt')
             ### Suppressing these Prints for my Sanity ###  
-            #print("Playlist Name: "+ playlist['name'] + " Playlist data: ")
-            #print(self.Database_Information[playlist['name']])
+            print("Playlist Name: "+ playlist['name'] + " Playlist data: ")
+            print(self.Database_Information[playlist['name']])
+            Write_to_file(self.Database_Information, "output.txt")
 
     def print_playlist_information(self,playlist_library):
         for playlist in self.playlist_library['items']:
@@ -63,30 +64,12 @@ class spotify_featured_playlists():
                 print(self.sp.audio_features(songID) )
                 print('\n')
             print('\n\n')
-    def Write_to_file(self,Database_Information,output):
-        try:
-            f = open(output,'a')
-        except:
-            f = open(output,'x')
-        for item in Database_Information.items():
-            f.write(str(item) + '\n')
-        f.close()
 
-            
     # def Write_to_file(self,Database_Information,output):
-    #     f = open(output,"a")
+    #     try:
+    #         f = open(output,'a')
+    #     except:
+    #         f = open(output,'x')
     #     for item in Database_Information.items():
     #         f.write(str(item) + '\n')
     #     f.close()
-
-    #         # #A list of infomarion about every single track in a playlist 
-    #         # track_list = self.sp.playlist_tracks(playlist['id'])
-    #         # #Track is an individual song information in the playlist 
-    #         # for track in track_list['items']: 
-    #         #     #Name of the song 
-    #         #     songID = track['track']['id']
-    #         #     print(track['track']['name'] + ':')
-    #         #     #All audio feautres printed out
-    #         #     print(self.sp.audio_features(songID) )
-    #         #     print('\n')
-    #         # print('\n\n')

@@ -21,12 +21,6 @@ def Read_from_File(output):
     f.close()
     return File_dict
 
-
-
-
-
-
-
 # Add the current date and time as line 1 to the top of date. 
 # Write would function in the same way WAHOOOOO 
 
@@ -40,7 +34,7 @@ def Write_to_file(Database_Information,output):
         except:
             f = open(output,'x')
         
-        f.write(datetime.datetime.now() + '\n')
+        f.write(str(datetime.datetime.now()) + '\n')
         for item in Database_Information.items():
             f.write(str(item) + '\n')
         f.close()
