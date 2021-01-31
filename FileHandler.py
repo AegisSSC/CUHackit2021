@@ -1,5 +1,5 @@
 import datetime
-
+import os
 
 # This function reads a file and creats a map to compare the values. 
 # if the file can't be opened it exits 
@@ -33,8 +33,9 @@ def Write_to_file(Database_Information,output):
             f = open(output,'a')
         except:
             f = open(output,'x')
-        
-        f.write(str(datetime.datetime.now()) + '\n')
+        #If the file is empty 
+        if os.stat(output).st_size == 0:
+            f.write(str(datetime.datetime.now()) + '\n')
         for item in Database_Information.items():
             f.write(str(item) + '\n')
         f.close()
