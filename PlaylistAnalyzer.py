@@ -2,17 +2,28 @@ from collections import Counter
 import math
 import statistics
 
+
 class Analyzer():
 
     def __init__(self):
-        var = 2
-        min_cluster_size = 5
+        self.var = 2
+        self.min_cluster_size = 5
+        self.danceability_list = []
+        self.tempo_list = []
+        self.key_list = []
+        self.valence_list = []
+        self.energy_list = []
+        self.speechiness_list = []
+        self.acousticness_list = []
+        self.mode_list = []
+        self.key_list = []
+        
     def calculate_median(self, sorted_list):
         halfway = len(sorted_list) // 2
         if(halfway %2):
-            return sorted(sorted_list)[halfway]
+            return round(sorted(sorted_list)[halfway],5)
         else:
-            return (sum(sorted(sample)[halfway - 1: halfway + 1])/2)
+            return round((sum(sorted(sorted_list)[halfway - 1: halfway + 1])/2),5)
     
     def calculate_mode(self, sorted_list):
         c = Counter(sorted_list)
@@ -20,61 +31,50 @@ class Analyzer():
 
     def calculate_mean(self, List, length):
         mean = statistics.mean(List)
-        std = self.calculate_std_dev(List)
-        for i in List:
-            if i < (mean - (std*self.var)):
-                sbset.append(i)
-            elif(i > (mean - (std * self.var))):
-                superset.append(i)
-        if(len(subset) >= self.min_cluster_size):
-            sub_mean = self.calculate_mean(subset, len(subset))
-        if(len(superset) >= min_cluster_size):
-            super_mean = self.calculate_mean(superset, len(superset))
-        return mean, sub_mean, super_mean
+        return round(mean,5) #, sub_mean, super_mean
 
-    def calculate_std_dev(self, List): 
-        return statistics.pstdev(List)
+    # def calculate_std_dev(self, List): 
+    #     return round(statistics.pstdev(List),5)
     
     def calculate_median_danceability(self, playlist):
         for song in playlist:
-            danceability_list = song["danceability"]
-        return self.calculate_median(danceability_list)
+            self.danceability_list.append(song[0]["danceability"])
+        return self.calculate_median(self.danceability_list)
 
     def calculate_median_tempo(self, playlist):
         for song in playlist:
-            tempo_list = song["tempo"]
-        return self.calculate_median(tempo_list)
+            self.tempo_list.append(song[0]["tempo"])
+        return self.calculate_median(self.tempo_list)
         
     def calculate_mode_key(self, playlist):
         for song in playlist:
-            key_list = song["key"]
-        return self.calculate_mode(key_list)
+            self.key_list.append(song[0]["key"])
+        return self.calculate_mode(self.key_list)
         
     def calculate_mode_mode(self, playlist):
         for song in playlist:
-            mode_list = song["mode"]
-        return self.calculate_mode(mode_list)
+            self.mode_list.append(song[0]["mode"])
+        return self.calculate_mode(self.mode_list)
         
     def calculate_mean_acousticness(self, playlist,length):
         for song in playlist:
-            acousticness_list = song["acousticness"]
-        return self.calculate_mode(acoutsticness_list)
+            self.acousticness_list.append(song[0]["acousticness"])
+        return self.calculate_mode(self.acousticness_list)
 
     def calculate_mean_speechiness(self, playlist,length):
         for song in playlist:
-            speechiness_list = song["speechiness"]
-        return self.calculate_mean(speechiness_list, length)
+            self.speechiness_list.append(song[0]["speechiness"])
+        return self.calculate_mean(self.speechiness_list, length)
         
     def calculate_mean_valence(self, playlist,length):
         for song in playlist:
-            valence_list = song["valence"]
-        return self.calculate_mean(valence_list, length)
+            self.valence_list.append(song[0]["valence"])
+        return self.calculate_mean(self.valence_list, length)
 
     def calculate_mean_energy(self, playlist,length):
         for song in playlist:
-            energy_list = song["energy"]
-        return self.calculate_mean(energy_list, length)
-
+            self.energy_list.append(song[0]["energy"])
+        return self.calculate_mean(self.energy_list, length)
 
     #Takes in all of the metrics from the individual songs, comparing them together
     def analyze_playlist(self, playlist, length = 100):
